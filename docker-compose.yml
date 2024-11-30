@@ -1,0 +1,22 @@
+services:
+  stress-ng:
+    image: ghcr.io/deeravenger/stress-ng:latest
+    restart: unless-stopped
+
+    command: >
+      --cpu 2
+      --cpu-load 30
+      --vm 1
+      --vm-bytes 30%
+      --sock 1
+      --timeout 20s
+
+    deploy:
+      resources:
+        limits:
+          cpus: 2
+          memory: 8G
+        reservations:
+          cpus: '0.5'
+          memory: '1G'
+
